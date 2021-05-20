@@ -1,0 +1,2 @@
+class MatchupNotesController < ApplicationController
+end

@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  comfort: MyString
+  character_id: MyString
+  opponent_id: MyString
+
+two:
+  comfort: MyString
+  character_id: MyString
+  opponent_id: MyString

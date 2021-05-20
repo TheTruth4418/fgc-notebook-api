@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  decription: MyText
+  character_id: MyString
+  matchup_id: MyString
+
+two:
+  decription: MyText
+  character_id: MyString
+  matchup_id: MyString
