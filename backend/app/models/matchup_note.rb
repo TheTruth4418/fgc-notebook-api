@@ -4,5 +4,5 @@ class MatchupNote < ApplicationRecord
 
     validates :matchup_id, presence: true
     validates :title, presence: true
-    validates :title, uniquness: true
+    validates :title, uniqueness: true
 end
