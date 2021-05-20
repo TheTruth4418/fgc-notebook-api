@@ -21,8 +21,6 @@ ActiveRecord::Schema.define(version: 2021_05_20_143323) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "matchup_notes", force: :cascade do |t|
