@@ -1,18 +1,17 @@
 class Note < ApplicationRecord
-    belongs_to :matchup_note
-    belongs_to :character_note 
+    belongs_to :matchup_note, optional: true
+    belongs_to :character_note, optional: true
 
-    validates_numericality_of :character_note_id, allow_nil: true
-    validates_numericality_of :matchup_note_id, allow_nil: true
+    validates_presence_of :character_note_id, if: :matchup_note_id_blank?
+    validates_presence_of :matchup_note_id, if: :character_note_id_blank?
 
-    validate :character_xor_matchup
     validates :description, presence: true
 
-    private
+    def character_note_id_blank?
+        character_note_id.blank?
+    end
 
-    def character_xor_matchup
-        unless character_note_id.blank? && matchup_note_id.blank?
-            errors.add(:base, "Note cant exsist without a character or a matchup!")
-        end
+    def matchup_note_id_blank?
+        matchup_note_id.blank? 
     end
 end
