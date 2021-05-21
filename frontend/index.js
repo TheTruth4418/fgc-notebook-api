@@ -3,23 +3,30 @@ document.addEventListener('DOMContentLoaded', (x) => {
 });
 
 let mode = "home"
+let p = document.getElementById("test")
+document.body.append(p)
+p.innerText = mode
 
 function addModeSelectListener(){
     let buttons = document.querySelectorAll("button");
     buttons.forEach(button => {
         button.addEventListener("click", event => {
-            console.log(event.path[0].id);
-            mode = event.path[0].id
+            mode = event.path[0].id;
+            p.innerText = mode
         })
     })
 }
 
-function createForms(){
+addModeSelectListener();
 
+function createForms(){
+    console.log("hello")
 }
 
+createForms();
+
 function pullUpNotes(){
-    
+
 }
 
 class Note {
