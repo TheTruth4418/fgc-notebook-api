@@ -3,40 +3,89 @@ document.addEventListener('DOMContentLoaded', (x) => {
 });
 
 let mode = "home"
-let p = document.getElementById("test")
-document.body.append(p)
-p.innerText = mode
+const content = document.getElementById("content")
+const nav = document.querySelectorAll('.nav button')
+const p = document.getElementById("instructions")
 
-function addModeSelectListener(){
-    let buttons = document.querySelectorAll("button");
-    buttons.forEach(button => {
+function addNavSelectListener(){
+    nav.forEach(button => {
         button.addEventListener("click", event => {
             mode = event.path[0].id;
-            p.innerText = mode
+            switchMode(mode);
         })
     })
 }
 
-addModeSelectListener();
-
-function createForms(){
-    console.log("hello")
+function addChoiceSelectListener(choices){
+    choices.forEach(button => {
+        button.addEventListener("click", event => {
+            return console.log(event.path[0].id);
+        })
+    })
 }
 
-createForms();
-
-function pullUpNotes(){
-
-}
-
-class Note {
-    constructor(character,title,notes) {
-        this.character = character
-        this.title = title
-        this.notes = notes
+function removeChildNodes(parent) {
+    while (parent.firstChild){
+        parent.removeChild(parent.firstChild)
     }
 }
 
-class View {
+function homeMode(){
+    removeChildNodes(content);
+    p.innerHTML = "Select From Nav which mode you want!"
+}
 
+function viewMode(){
+    removeChildNodes(content);
+    p.innerHTML = "You are now in view mode. Matchup Notes or Viewer Notes?"
+
+    let button1 = document.createElement("button");
+    let button2 = document.createElement("button");
+
+    button1.innerText = "Character Notes";
+    button2.innerText = "Matchup Notes";
+
+    button1.id = "char"
+    button2.id = "mu"
+
+    content.append(button1, button2);
+
+    const choices = document.querySelectorAll('#content button')
+    addChoiceSelectListener(choices);
+}
+
+function createMode(){
+    removeChildNodes(content);
+    p.innerHTML = "You are now in Create mode. Matchup Notes or Viewer Notes?"
+
+    let button1 = document.createElement("button");
+    let button2 = document.createElement("button");
+
+    button1.innerText = "Character Notes";
+    button2.innerText = "Matchup Notes";
+
+    button1.id = "char"
+    button2.id = "mu"
+
+    content.append(button1, button2);
+
+    const choices = document.querySelectorAll('#content button');
+    addChoiceSelectListener(choices);
+}
+// ___________________________________________________________________________________
+addNavSelectListener();
+switchMode(mode);
+
+function switchMode(mode){
+    switch(mode){
+        case "home":
+            homeMode();
+            break;
+        case "view":
+            viewMode();
+            break;
+        case "create":
+            createMode();
+            break;
+    }
 }
