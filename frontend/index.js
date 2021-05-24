@@ -16,14 +16,6 @@ function addNavSelectListener(){
     })
 }
 
-function addChoiceSelectListener(choices){
-    choices.forEach(button => {
-        button.addEventListener("click", event => {
-            return console.log(event.path[0].id);
-        })
-    })
-}
-
 function removeChildNodes(parent) {
     while (parent.firstChild){
         parent.removeChild(parent.firstChild)
@@ -42,16 +34,15 @@ function viewMode(){
     let button1 = document.createElement("button");
     let button2 = document.createElement("button");
 
-    button1.innerText = "Character Notes";
-    button2.innerText = "Matchup Notes";
+    button1.innerText = "View Character Notes";
+    button2.innerText = "View Matchup Notes";
 
     button1.id = "char"
     button2.id = "mu"
-
+    let choice = "";
     content.append(button1, button2);
 
     const choices = document.querySelectorAll('#content button')
-    addChoiceSelectListener(choices);
 }
 
 function createMode(){
@@ -70,11 +61,52 @@ function createMode(){
     content.append(button1, button2);
 
     const choices = document.querySelectorAll('#content button');
-    addChoiceSelectListener(choices);
+
+    choices.forEach(button => {
+        button.addEventListener("click", event => {
+            form = new Form(event.path[0].id);
+        })
+    })
+
+    let form = document.createElement("form")
+
+}
+// Create the forms via prototypes
+function Form (type){
+    this.type = type
+    switch(type){
+        case "char":
+            this.characterForm();
+            break;
+        case "mu":
+            this.matchupForm();
+            break;
+    }
+}
+
+Form.prototype.characterForm = function() {
+    console.log("Character Form");
+}
+
+Form.prototype.matchupForm = function() {
+    console.log("Mathcup Form");
 }
 // ___________________________________________________________________________________
 addNavSelectListener();
-switchMode(mode);
+
+function switchForm(choice){
+    switch(choice){
+        case "char":
+            createForm();
+            break;
+        case "mu":
+            matchupForm();
+            break;
+        default:
+            console.log("this case dosent match any valid ones please try again!")
+            break;
+    }
+}
 
 function switchMode(mode){
     switch(mode){
@@ -89,3 +121,5 @@ function switchMode(mode){
             break;
     }
 }
+
+
