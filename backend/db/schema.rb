@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_143323) do
 
   create_table "matchup_notes", force: :cascade do |t|
     t.string "title"
-    t.integer "matchup_note_id"
+    t.integer "matchup_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

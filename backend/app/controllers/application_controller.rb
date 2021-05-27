@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::API
-
     def create_characters(mode)
 
         characters =["Shang Tsung", "Shao Kahn", "Frost", "Nightwolf",

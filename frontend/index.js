@@ -74,9 +74,20 @@ document.addEventListener('DOMContentLoaded', (x) => {
   }
   
   function charForm() {
-    form.action = 'http://127.0.0.1:3000/characters/:id/character_note'
-    let label1 = document.createElement("label")
-    let select1 = document.createElement("select")
+    const label1 = document.createElement("label")
+    const select1 = document.createElement("select")
+    const title = document.createElement("label")
+    const titleInput = document.createElement("input")
+    const submit = document.createElement("input")
+    let br = document.createElement("br")
+
+    
+    title.innerHTML = "Title of Note:"
+    titleInput.setAttribute("type", "text");
+    titleInput.name = "character[character_note]"
+    titleInput.placeholder = "Title of Note"
+    select1.name = "character"
+    submit.setAttribute("type", "submit");
   
     label1.innerHTML = "Character Name"
   
@@ -92,15 +103,94 @@ document.addEventListener('DOMContentLoaded', (x) => {
       });
   
     content.append(form)
-    form.append(label1,select1)
+    form.append(label1,select1,br.cloneNode(),title,titleInput,br,submit)
+    submit.addEventListener("click", function(event){ 
+        event.preventDefault()
+        submitCharForm(select1.value, titleInput.value)
+    });
+    //form.addEventListener("submit", submitCharForm(select1.name, titleInput.name));
+  }
+
+  function submitCharForm(char, charNote){
+    return fetch( 'http://127.0.0.1:3000/characters/:id/character_note/new', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify( {
+          char,
+          charNote
+        } )
+      } )
+      .then((response) => {
+          return response.json();
+      }).then((data) => {
+          alert(data.message)
+      });
   }
   
   function muForm() {
-    form.action = 'some other action'
-    let label1 = document.createElement("label")
-    let select1 = document.createElement("select")
-  
-  
+    const charLabel = document.createElement("label")
+    const charSelect = document.createElement("select")
+    const oppLabel = document.createElement("label")
+    const oppSelect = document.createElement("select")
+    const title = document.createElement("label")
+    const titleInput = document.createElement("input")
+    const submit = document.createElement("input")
+    const br = document.createElement("br")
+
+    title.innerHTML = "Title of Note:"
+    titleInput.setAttribute("type", "text");
+    titleInput.name = "character[matchup_note]"
+    titleInput.placeholder = "Title of Note"
+    charLabel.innerHTML = "Character"
+    oppLabel.innerHTML = "Opponent"
+    charSelect.name = "character"
+    oppSelect.name = "opponent"
+    submit.setAttribute("type", "submit");
+
+    fetch('http://127.0.0.1:3000/characters')
+      .then((response) => {
+          return response.json();
+      }).then((characters) => { assignChars(characters).forEach(char => {
+          let option = document.createElement("option")
+          let option2 = document.createElement("option")
+          option.value = char
+          option.innerHTML = char
+          option2.value = char
+          option2.innerHTML = char
+          charSelect.append(option)
+          oppSelect.append(option2)
+          });
+      });
+
+  content.append(form)
+  form.append(charLabel,charSelect,br,oppLabel,oppSelect,br.cloneNode(), title, titleInput, br.cloneNode(), submit)
+    submit.addEventListener("click", function(event){ 
+        event.preventDefault()
+        submitMuForm(charSelect.value,oppSelect.value,titleInput.value)
+    });
+  }
+
+  function submitMuForm(char, opp, title){
+    return fetch( 'http://127.0.0.1:3000/characters/:id/matchup_note/new', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify( {
+          char,
+          opp,
+          title
+        } )
+      } )
+      .then((response) => {
+          return response.json();
+      }).then((data) => {
+          alert(data.message)
+      });
   }
   
   function switchFormMode(mode) {
