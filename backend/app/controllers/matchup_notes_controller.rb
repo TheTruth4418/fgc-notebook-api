@@ -11,4 +11,20 @@ class MatchupNotesController < ApplicationController
             render json: {message:charNote.errors.messages.to_s}
         end
     end
+
+    def show 
+        char1 = Character.find_by(name: params[:char]) 
+        char2 = Character.find_by(name: params[:opp])
+        mu = Matchup.find_by(character_id: char1.id, opponent_id: char2.id)
+        if mu.matchup_notes.length > 0
+            render json: mu.to_json(:include => {
+                :matchup_notes => {:include => {
+                    :notes => {:only => [:description]},
+                }, :only => [:title],
+            }}, :except => [:created_at, :updated_at, :id])
+        else
+            render json: {message: "not found"}
+        end
+        # Grab the correct Matchup, then display the matchup note in h1 and then notes in bullet points
+    end
 end
