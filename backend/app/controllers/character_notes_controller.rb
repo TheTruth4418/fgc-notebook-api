@@ -24,7 +24,7 @@ class CharacterNotesController < ApplicationController
         render json: note.to_json(:include => {
             :character_notes => {:include => {
                 :notes => {:only => [:description]},
-            }, :only => [:title],
+            }, :only => [:title, :id],
         }}, :except => [:created_at, :updated_at])
         # display the title in h1 tag with the note
     end

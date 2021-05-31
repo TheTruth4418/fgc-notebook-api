@@ -20,7 +20,7 @@ class MatchupNotesController < ApplicationController
             render json: mu.to_json(:include => {
                 :matchup_notes => {:include => {
                     :notes => {:only => [:description]},
-                }, :only => [:title],
+                }, :only => [:id,:title],
             }}, :except => [:created_at, :updated_at, :id])
         else
             render json: {message: "not found"}

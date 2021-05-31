@@ -104,12 +104,16 @@ function searchAndListCharNotes(arg){
       data.character_notes.forEach(charNote => {
         const ul = document.createElement("ul")
         ul.innerHTML = charNote.title
+        const newNote = document.createElement("button")
+        newNote.innerHTML = "Add a Note "
         charNote.notes.forEach(note => {
           const li = document.createElement("li")
           li.innerHTML = note.description
           ul.append(li) 
         })
+        ul.append(newNote)
         notesDiv.append(ul)
+        newNote.addEventListener("click",function(){ createNewNote(charNote,'char') })
       }); 
     });
 }
@@ -175,17 +179,78 @@ function searchAndListMuNotes(char, opp){
         muNote.notes.forEach(note => {
           const li = document.createElement("li")
           li.innerHTML = note.description
-          ul.append(li,newNote) 
+          ul.append(li) 
         })
+        ul.append(newNote)
         notesDiv.append(ul);
-        //newNote.addEventListener("clicj", newCharPoint(data.character))
+        newNote.addEventListener("click",function(){ createNewNote(muNote, 'mu') })
       }); 
+    }).catch(data => {
+      alert("There was an error please try again.")
     });
 }
 
+function createNewNote(arg, type = 'char'){
+
+  if (document.getElementById("newNote")){
+    document.getElementById("newNote").remove()
+  }
+  let titleId = arg.id
+  let form2 = document.createElement("form")
+  form2.id = "newNote"
+  let descLabel = document.createElement("label")
+  let desc = document.createElement("input")
+  let submit = document.createElement("input")
+  let body ;
+
+  descLabel.innerHTML = `Add to: ${arg.title}`
+  submit.setAttribute("type", "submit")
+  form2.append(descLabel,desc,br,submit)
+  document.getElementById("notes").append(form2)
+  
+  submit.addEventListener("click", function(event){ 
+    event.preventDefault()
+    submitNewNote(titleId,type,desc.value)
+});
+}
+
+function submitNewNote(titleId, type, desc){
+  let notes = document.getElementById("notes")
+  let char =  document.getElementsByName("char")[0].value
+
+   return fetch( 'http://127.0.0.1:3000/notes/new', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify( {
+        titleId,
+        type,
+        desc
+      } )
+    } )
+    .then((response) => {
+        return response.json();
+    }).then((data) => {
+      removeChildNodes(notes);
+      if (type === 'mu'){
+        console.log(data)
+        let opp = document.getElementsByName("opp")[0].value
+        searchAndListMuNotes(char, opp);
+      } else {
+        console.log(data)
+        searchAndListCharNotes(char)
+      };
+    });
+}
+
+
 function createMode(){
   removeChildNodes(content);
-  document.getElementById('notes').remove()
+  if (document.getElementById('notes')){
+    document.getElementById('notes').remove()
+  }
   p.innerHTML = "You are now in Create mode. Matchup Notes or Viewer Notes?"
 
   let button1 = document.createElement("button");
@@ -246,7 +311,6 @@ function charForm() {
       event.preventDefault()
       submitCharForm(select1.value, titleInput.value)
   });
-  //form.addEventListener("submit", submitCharForm(select1.name, titleInput.name));
 }
 
 function submitCharForm(char, charNote){

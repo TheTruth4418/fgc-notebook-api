@@ -6,6 +6,7 @@ class Note < ApplicationRecord
     validates_presence_of :matchup_note_id, if: :character_note_id_blank?
 
     validates :description, presence: true
+    validates :description, uniqueness: true
 
     def character_note_id_blank?
         character_note_id.blank?

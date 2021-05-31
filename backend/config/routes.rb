@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   post '/characters/:id/character_notes/:id' => 'character_notes#show'
   post '/characters/:id/matchup_notes/:id' => 'matchup_notes#show'
+  post '/notes/new' => 'notes#create'
   get 'characters/:id/character_notes' => 'character_notes#index'
   post 'characters/:id/character_note/new' => 'character_notes#create'
   post 'characters/:id/matchup_note/new' => 'matchup_notes#create'
