@@ -101,20 +101,33 @@ function searchAndListCharNotes(arg){
         return response.json();
     }).then((data) => {
       console.log(data)
+      if (data.character_notes){
       data.character_notes.forEach(charNote => {
         const ul = document.createElement("ul")
         ul.innerHTML = charNote.title
         const newNote = document.createElement("button")
         newNote.innerHTML = "Add a Note "
+        const del = document.createElement("button")
+        del.innerHTML = "Delete title"
+        ul.append(del)
         charNote.notes.forEach(note => {
+          const delNote = document.createElement("button")
+          delNote.innerHTML = "Delete Note"
           const li = document.createElement("li")
           li.innerHTML = note.description
-          ul.append(li) 
+          ul.append(li,delNote) 
+          delNote.addEventListener("click",function(){deleteNote(note, 'char')})
         })
         ul.append(newNote)
         notesDiv.append(ul)
         newNote.addEventListener("click",function(){ createNewNote(charNote,'char') })
+        del.addEventListener("click",function(){deleteCharNote(charNote)})
       }); 
+    } else {
+      let p = document.createElement("p")
+      p.innerHTML = data.message
+      notesDiv.append(p)
+    }
     });
 }
 
@@ -171,23 +184,33 @@ function searchAndListMuNotes(char, opp){
         return response.json();
     }).then((data) => {
       console.log(data)
+      if (data.matchup_notes) {
        data.matchup_notes.forEach(muNote => {
         const ul = document.createElement("ul")
         ul.innerHTML = muNote.title;
         const newNote = document.createElement("button")
         newNote.innerHTML = "Add a Note "
+        const del = document.createElement("button")
+        del.innerHTML = "Delete title"
+        ul.append(del)
         muNote.notes.forEach(note => {
+          const delNote = document.createElement("button")
+          delNote.innerHTML = "Delete Note"
           const li = document.createElement("li")
           li.innerHTML = note.description
-          ul.append(li) 
+          ul.append(li, delNote) 
+          delNote.addEventListener("click",function(){deleteNote(note, 'mu')})
         })
-        ul.append(newNote)
+        ul.append(br,newNote)
         notesDiv.append(ul);
         newNote.addEventListener("click",function(){ createNewNote(muNote, 'mu') })
-      }); 
-    }).catch(data => {
-      alert("There was an error please try again.")
-    });
+        del.addEventListener("click",function(){ deleteMuNote(muNote)})
+      });} else {
+        let p = document.createElement("p")
+        p.innerHTML = data.message;
+        notesDiv.append(p)
+      } 
+    })
 }
 
 function createNewNote(arg, type = 'char'){
@@ -207,7 +230,7 @@ function createNewNote(arg, type = 'char'){
   submit.setAttribute("type", "submit")
   form2.append(descLabel,desc,br,submit)
   document.getElementById("notes").append(form2)
-  
+
   submit.addEventListener("click", function(event){ 
     event.preventDefault()
     submitNewNote(titleId,type,desc.value)
@@ -245,6 +268,69 @@ function submitNewNote(titleId, type, desc){
     });
 }
 
+function deleteNote(note,type){
+  const noteId = note.id
+  let choice = confirm("Are you sure you want to delete this note?")
+  if(choice === true){
+    return fetch( `http://127.0.0.1:3000/notes/${noteId}/delete`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+    } )
+    .then((response) => {
+      let char =  document.getElementsByName("char")[0].value
+      removeChildNodes(document.getElementById("notes"))
+      if (type === 'mu'){
+        let opp = document.getElementsByName("opp")[0].value
+        searchAndListMuNotes(char, opp);
+      } else {
+        searchAndListCharNotes(char);
+      }
+    });
+  }
+}
+
+function deleteCharNote(note){
+  let noteId = note.id
+  let choice = confirm("Are you sure you want to delete this note?")
+  if(choice === true){
+    return fetch( `http://127.0.0.1:3000/character_notes/${noteId}/delete`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+    } )
+    .then((response) => {
+      let char =  document.getElementsByName("char")[0].value
+      removeChildNodes(document.getElementById("notes"))
+      searchAndListCharNotes(char);
+    });
+  }
+}
+
+function deleteMuNote(note){
+  const noteId = note.id
+  console.log(noteId)
+  let choice = confirm("Are you sure you want to delete this note?")
+  if(choice === true){
+    return fetch( `http://127.0.0.1:3000/matchup_notes/${noteId}/delete`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+    } )
+    .then((response) => {
+      let char =  document.getElementsByName("char")[0].value
+      let opp = document.getElementsByName("opp")[0].value
+      removeChildNodes(document.getElementById("notes"))
+      searchAndListMuNotes(char, opp);
+    });
+  }
+}
 
 function createMode(){
   removeChildNodes(content);
@@ -449,3 +535,6 @@ return fetch(link)
   .then(json => console.log(json))
 }  
 addNavSelectListener();
+function hi() {
+  console.log("hi")
+}

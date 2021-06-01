@@ -19,4 +19,9 @@ class NotesController < ApplicationController
             end
         end
     end
+
+    def destroy 
+        note = Note.find_by_id(params[:id])
+        note.destroy
+    end
 end

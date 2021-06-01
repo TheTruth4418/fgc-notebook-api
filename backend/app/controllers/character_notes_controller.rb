@@ -1,13 +1,4 @@
 class CharacterNotesController < ApplicationController
-    def index
-        notes = CharacterNote.find_by(character_id: params[:id])
-        if notes
-            render json: notes
-        else
-            render json: { message: 'No notes in database' }
-        end
-    end
-
     def create 
         character = Character.find_by(name: params[:char])
         charNote = CharacterNote.new(title: params[:charNote], character_id:  character.id)
@@ -21,11 +12,22 @@ class CharacterNotesController < ApplicationController
 
     def show
         note = Character.find_by(name: params[:arg])
-        render json: note.to_json(:include => {
-            :character_notes => {:include => {
-                :notes => {:only => [:description]},
-            }, :only => [:title, :id],
-        }}, :except => [:created_at, :updated_at])
+        if note.character_notes.length > 0
+            render json: note.to_json(:include => {
+                :character_notes => {:include => {
+                    :notes => {:only => [:id,:description]},
+                }, :only => [:title, :id],
+            }}, :except => [:created_at, :updated_at])
+        else
+            render json: {message:"No notes found for #{note.name}"}
+        end
         # display the title in h1 tag with the note
+    end
+
+    def destroy
+        def destroy 
+            note = CharacterNote.find_by_id(params[:id])
+            note.destroy
+        end
     end
 end

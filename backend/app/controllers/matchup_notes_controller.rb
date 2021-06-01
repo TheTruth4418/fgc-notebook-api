@@ -19,12 +19,19 @@ class MatchupNotesController < ApplicationController
         if mu.matchup_notes.length > 0
             render json: mu.to_json(:include => {
                 :matchup_notes => {:include => {
-                    :notes => {:only => [:description]},
+                    :notes => {:only => [:id,:description]},
                 }, :only => [:id,:title],
             }}, :except => [:created_at, :updated_at, :id])
         else
-            render json: {message: "not found"}
+            render json: {message: "No Matchup Notes found for #{char1.name} vs #{char2.name}."}
         end
         # Grab the correct Matchup, then display the matchup note in h1 and then notes in bullet points
+    end
+
+    def destroy
+        def destroy 
+            note = MatchupNote.find_by_id(params[:id])
+            note.destroy
+        end
     end
 end
