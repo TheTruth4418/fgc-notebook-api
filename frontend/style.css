@@ -1,0 +1,10 @@
+@font-face {
+    font-family: MK11;
+    src: url("fonts/Mortal-Kombat-MK11.otf") format("opentype");
+}
+
+@font-face {
+    font-family: MK3;
+    src: url("fonts/mortalkombat3.ttf") format("opentype");
+}
+/* Nav bar styling */

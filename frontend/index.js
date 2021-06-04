@@ -5,13 +5,15 @@ document.addEventListener('DOMContentLoaded', (x) => {
 let mode ;
 const form = document.createElement('form')
 const content = document.getElementById("content")
-const nav = document.querySelectorAll('.nav button')
+const nav = document.querySelectorAll('.nav a')
 const p = document.getElementById("instructions")
 const br = document.createElement("br")
 homeMode();
 
-nav.forEach(button => {
-  button.addEventListener("click", event => {
+nav.forEach(link => {
+  link.href=""
+  link.addEventListener("click", event => {
+      event.preventDefault()
       mode = event.path[0].id;
       switchMode(mode)
   })
