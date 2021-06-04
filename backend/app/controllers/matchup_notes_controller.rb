@@ -4,11 +4,11 @@ class MatchupNotesController < ApplicationController
         char2 = Character.find_by(name: params[:opp])
         mu = Matchup.find_by(character_id: char1.id, opponent_id: char2.id)
         mu_note = MatchupNote.new(title: params[:title], matchup_id: mu.id)
-        if mu.valid?
+        if mu_note.valid?
             mu_note.save
             render json: {message:"Note saved for #{char1.name} vs #{char2.name} matchup."}
         else
-            render json: {message:charNote.errors.messages.to_s}
+            render json: {message:mu_note.errors.messages.to_s}
         end
     end
 
@@ -25,12 +25,12 @@ class MatchupNotesController < ApplicationController
         else
             render json: {message: "No Matchup Notes found for #{char1.name} vs #{char2.name}."}
         end
-        # Grab the correct Matchup, then display the matchup note in h1 and then notes in bullet points
     end
 
     def destroy
         def destroy 
             note = MatchupNote.find_by_id(params[:id])
+            note.notes.destroy_all
             note.destroy
         end
     end

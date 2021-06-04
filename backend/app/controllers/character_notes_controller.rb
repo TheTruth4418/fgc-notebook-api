@@ -27,6 +27,7 @@ class CharacterNotesController < ApplicationController
     def destroy
         def destroy 
             note = CharacterNote.find_by_id(params[:id])
+            note.notes.destroy_all
             note.destroy
         end
     end
