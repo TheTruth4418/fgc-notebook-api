@@ -2,12 +2,13 @@ document.addEventListener('DOMContentLoaded', (x) => {
   console.log("DOM loaded up!")
 });
 
-let mode = "home"
+let mode ;
 const form = document.createElement('form')
 const content = document.getElementById("content")
 const nav = document.querySelectorAll('.nav button')
 const p = document.getElementById("instructions")
 const br = document.createElement("br")
+homeMode();
 
 nav.forEach(button => {
   button.addEventListener("click", event => {
@@ -105,27 +106,6 @@ function viewMode(){
 });
 }
 
-
-class Game{
-  // Construct with the game type
-  //Have the list of characters change in line with the game
-}
-
-class CharacterNote{
-  //Return the character note through the class
-  constructor(){
-
-  }
-}
-
-class MatchupNote{
-  //Return the Matchup Notes witht the class
-
-  constructor(){
-    
-  }
-}
-
 function removeChildNodes(parent) {
   while (parent.firstChild){
       parent.removeChild(parent.firstChild)
@@ -145,17 +125,3 @@ function switchMode(mode){
           break;
   }
 }
-/*
- newNote.addEventListener("click", createNewNote(muNote))
-no CALLBACK function.
-
- Easier way to remove the below divs when selecting a different option?
- why is only POST the one that works?
- Pass through params in the backend
- Learn how to pass thorugh
-
- Successful error handles on the backend
- Delete title sometimes dosent work out
- Sharpen up the code
- API class
-*/

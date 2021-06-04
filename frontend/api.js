@@ -209,7 +209,6 @@ class API {
 
       deleteMuNote(note){
         const noteId = note.id
-        console.log(noteId)
         let choice = confirm("Are you sure you want to delete this note?")
         if(choice === true){
           return fetch( `http://127.0.0.1:3000/matchup_notes/${noteId}/delete`, {
