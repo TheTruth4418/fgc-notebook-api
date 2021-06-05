@@ -112,3 +112,30 @@ text-decoration: none;
       height: 100%;
       width:100%;
   }
+  /* Matchup Card Styling */
+  #charImg {
+    display: flex;
+  }
+  
+  .column {
+    flex: 33.33%;
+    padding: 5px;
+  }
+  #charLeft{
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+  #charRight{
+
+  }
+
+ #vs{
+      height:100%;
+      width:100%;
+      margin:-10%;
+  }
+  #charLeft, #charRight{
+      height:100%;
+      width:150%;
+      float:right;
+  }
