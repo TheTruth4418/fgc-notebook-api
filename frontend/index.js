@@ -31,8 +31,14 @@ function viewMode(){
   document.body.append(notes)
   p.innerHTML = "You are now in view mode. Matchup Notes or Viewer Notes?"
 
+  let ul = document.createElement("ul")
+  let li = document.createElement("li")
+  let li2 = document.createElement("li")
   let button1 = document.createElement("button");
   let button2 = document.createElement("button");
+
+  li.append(button1)
+  li2.append(button2)
 
   button1.innerText = "View Character Notes";
   button2.innerText = "View Matchup Notes";
@@ -40,13 +46,14 @@ function viewMode(){
   button1.id = "char"
   button2.id = "mu"
   let choice = "";
-  content.append(button1, button2);
+  ul.append(li,li2)
+  content.append(ul);
 
   const choices = document.querySelectorAll('#content button')
 
   choices.forEach(button => {
     button.addEventListener("click", event => {
-        switchViewMode(event.path[0].id);
+      new NoteView(event.path[0].id);
     });
 });
 }
@@ -58,8 +65,14 @@ function createMode(){
   }
   p.innerHTML = "You are now in Create mode. Matchup Notes or Viewer Notes?"
 
+  let ul = document.createElement("ul")
+  let li = document.createElement("li")
+  let li2 = document.createElement("li")
   let button1 = document.createElement("button");
   let button2 = document.createElement("button");
+
+  li.append(button1)
+  li2.append(button2)
 
   button1.innerText = "Character Notes";
   button2.innerText = "Matchup Notes";
@@ -70,7 +83,8 @@ function createMode(){
   button1.classList = "choice"
   button2.classList = "choice"
 
-  content.append(button1, button2);
+  ul.append(li,li2)
+  content.append(ul);
 
   const choices = document.querySelectorAll('#content button');
 
@@ -79,33 +93,6 @@ function createMode(){
           new FormBuilder(event.path[0].id);
       });
   });
-}
-
-function viewMode(){
-  removeChildNodes(content);
-  let notes = document.createElement("div")
-  notes.id = "notes"
-  document.body.append(notes)
-  p.innerHTML = "You are now in view mode. Matchup Notes or Viewer Notes?"
-
-  let button1 = document.createElement("button");
-  let button2 = document.createElement("button");
-
-  button1.innerText = "View Character Notes";
-  button2.innerText = "View Matchup Notes";
-
-  button1.id = "char"
-  button2.id = "mu"
-  let choice = "";
-  content.append(button1, button2);
-
-  const choices = document.querySelectorAll('#content button')
-
-  choices.forEach(button => {
-    button.addEventListener("click", event => {
-        new NoteView(event.path[0].id);
-    });
-});
 }
 
 function removeChildNodes(parent) {

@@ -27,14 +27,14 @@ class FormBuilder{
       const submit = document.createElement("input")
       let br = document.createElement("br")
   
-      title.innerHTML = "Title of Note:"
+      title.innerHTML = "NOTE TITLE:"
       titleInput.setAttribute("type", "text");
       titleInput.name = "character[character_note]"
       titleInput.placeholder = "Title of Note"
       select1.name = "character"
       submit.setAttribute("type", "submit");
   
-      label1.innerHTML = "Character Name"
+      label1.innerHTML = "CHARACTER"
   
       api.characters.forEach(char => {
         let opti = document.createElement("option")
@@ -78,12 +78,12 @@ class FormBuilder{
       const submit = document.createElement("input")
       const br = document.createElement("br")
   
-      title.innerHTML = "Title of Note:"
+      title.innerHTML = "NOTE TITLE:"
       titleInput.setAttribute("type", "text");
       titleInput.name = "character[matchup_note]"
       titleInput.placeholder = "Title of Note"
-      charLabel.innerHTML = "Character"
-      oppLabel.innerHTML = "Opponent"
+      charLabel.innerHTML = "CHARACTER"
+      oppLabel.innerHTML = "VS."
       charSelect.name = "character"
       oppSelect.name = "opponent"
       submit.setAttribute("type", "submit");
@@ -100,7 +100,7 @@ class FormBuilder{
         });
   
       content.append(form)
-      form.append(charLabel,charSelect,br,oppLabel,oppSelect,br.cloneNode(), title, titleInput, br.cloneNode(), submit)
+      form.append(charLabel,charSelect,oppLabel,oppSelect,br.cloneNode(), title, titleInput, br.cloneNode(), submit)
       submit.addEventListener("click", function(event){ 
         event.preventDefault()
         self.submitMuForm(charSelect.value,oppSelect.value,titleInput.value)

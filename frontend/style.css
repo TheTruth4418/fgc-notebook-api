@@ -7,4 +7,89 @@
     font-family: MK3;
     src: url("fonts/mortalkombat3.ttf") format("opentype");
 }
-/* Nav bar styling */
+/* Body */
+body{
+    background-color: black;
+}
+body label{
+    color: white;
+}
+body p{
+    color:white;
+    font-family:"MK3";
+    text-align: center;
+}
+body button,input[type=submit]{
+    border-color:gold;
+    color:gold;
+    background-color: black;
+    font-family: MK11;
+}
+
+/* Nav Bar styling */
+.nav ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background: linear-gradient(#404040,#202020)
+}
+
+.nav ul li {float: left;}
+
+.nav ul li a {
+font-family:MK11;
+display: block;
+color:white;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+
+.nav ul li a:hover{
+    background-color: gold;
+    color:black;
+}
+
+.nav ul li a.active {background-color: #04AA6D;}
+
+.nav ul li.right {float: right;}
+
+@media screen and (max-width: 600px) {
+.nav ul li.right, 
+.nav ul li {float: none;}
+}
+/* Notes view styling */
+#notes ul{
+    color: white;
+}
+#notes li{
+    color:white
+}
+/* Content Div styling */
+#content{
+    display:block;
+    text-align: center;
+}
+#content button{
+    margin: 10px;
+}
+#content ul{
+    list-style-type:none;
+    display:flex;
+    justify-content: center;
+}
+#content li{
+    display: list-item;
+    background: black;
+    padding: 5px 10px;
+    color:white;
+    margin: 0 3px;
+}
+#content form{
+    font-family: "MK3";
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}

@@ -19,10 +19,12 @@ class NoteView{
 
     charNotes(){
         let notesDiv = document.getElementById('notes')
+        let label1 = document.createElement("label")
         let charSelect = document.createElement("select")
         let submit = document.createElement("input")
         submit.setAttribute("type", "submit");
 
+        label1.innerHTML = "CHARACTER "
         charSelect.name = "char"
         submit.value = "Search"
 
@@ -34,7 +36,7 @@ class NoteView{
         });
 
         content.append(form)
-        form.append(charSelect,submit)
+        form.append(label1,charSelect,submit)
         submit.addEventListener("click", function(event){ 
             event.preventDefault();
             removeChildNodes(notesDiv)
@@ -44,6 +46,8 @@ class NoteView{
 
     muNotes(){
         let notesDiv = document.getElementById('notes')
+        let label1 = document.createElement("label")
+        let vs = document.createElement("label")
         let charSelect = document.createElement("select")
         let oppSelect = document.createElement("select")
         let submit = document.createElement("input")
@@ -52,6 +56,8 @@ class NoteView{
         charSelect.name = "char"
         oppSelect.name = "opp"
         submit.value = "Search"
+        label1.innerHTML="CHARACTER "
+        vs.innerHTML="VS."
 
         api.characters.forEach(char => {
             let option = document.createElement("option")
@@ -65,7 +71,7 @@ class NoteView{
         });
 
         content.append(form)
-        form.append(charSelect,oppSelect,submit)
+        form.append(label1,charSelect,vs,oppSelect,submit)
             submit.addEventListener("click", function(event){ 
             event.preventDefault();
             removeChildNodes(notesDiv)
