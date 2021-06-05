@@ -22,6 +22,7 @@ class NoteView{
         let label1 = document.createElement("label")
         let charSelect = document.createElement("select")
         let submit = document.createElement("input")
+        let img1 = document.createElement("img")
         submit.setAttribute("type", "submit");
 
         label1.innerHTML = "CHARACTER "
@@ -40,6 +41,9 @@ class NoteView{
         submit.addEventListener("click", function(event){ 
             event.preventDefault();
             removeChildNodes(notesDiv)
+            img1.src = `imgs/MK11/${charSelect.value}.png`
+            img1.id = "charImg"
+            cardImg.append(img1)
             api.fetchCharNotes(charSelect.value);
         });
     }

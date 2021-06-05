@@ -3,12 +3,25 @@ document.addEventListener('DOMContentLoaded', (x) => {
 });
 
 let mode ;
+
+/* Section initializers */
 const form = document.createElement('form')
 const content = document.getElementById("content")
 const nav = document.querySelectorAll('.nav a')
 const p = document.getElementById("instructions")
 const br = document.createElement("br")
+const cardDiv = document.createElement("div")
+const cardImg = document.createElement('div')
+const notes = document.createElement("div")
+
 homeMode();
+
+cardDiv.id = "infoCard"
+notes.id = "notes"
+cardImg.id = "charImg"
+
+notes.classList = "left"
+cardImg.classList = "right"
 
 nav.forEach(link => {
   link.href=""
@@ -26,9 +39,11 @@ function homeMode(){
 
 function viewMode(){
   removeChildNodes(content);
-  let notes = document.createElement("div")
-  notes.id = "notes"
-  document.body.append(notes)
+  removeChildNodes(notes);
+  removeChildNodes(cardImg);
+  cardDiv.remove();
+  document.body.append(cardDiv)
+  cardDiv.append(notes,cardImg)
   p.innerHTML = "You are now in view mode. Matchup Notes or Viewer Notes?"
 
   let ul = document.createElement("ul")
@@ -53,6 +68,7 @@ function viewMode(){
 
   choices.forEach(button => {
     button.addEventListener("click", event => {
+      removeChildNodes(cardImg);
       new NoteView(event.path[0].id);
     });
 });
@@ -60,9 +76,8 @@ function viewMode(){
 
 function createMode(){
   removeChildNodes(content);
-  if (document.getElementById('notes')){
-    document.getElementById('notes').remove()
-  }
+  cardDiv.remove();
+  notes.remove();
   p.innerHTML = "You are now in Create mode. Matchup Notes or Viewer Notes?"
 
   let ul = document.createElement("ul")

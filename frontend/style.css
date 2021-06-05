@@ -93,3 +93,22 @@ text-decoration: none;
     margin-right: auto;
     text-align: left;
 }
+/* Notes styling */
+#notes ul{
+    font-family: MK11;
+}
+#notes li {
+    font-family: MK3;
+}
+#infoCard {
+    display:flex;
+  }
+  
+  #infoCard div {
+    flex:50%;
+  }
+
+  #charImg{
+      height: 100%;
+      width:100%;
+  }
