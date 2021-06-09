@@ -11,7 +11,7 @@ class CharacterNotesController < ApplicationController
     end
 
     def show
-        note = Character.find_by(name: params[:arg])
+        note = Character.find_by(name: params[:name])
         if note.character_notes.length > 0
             render json: note.to_json(:include => {
                 :character_notes => {:include => {
@@ -28,7 +28,7 @@ class CharacterNotesController < ApplicationController
         def destroy 
             note = CharacterNote.find_by_id(params[:id])
             note.notes.destroy_all
-            note.destroy
+            note.destroy!
         end
     end
 end

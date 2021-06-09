@@ -6,7 +6,8 @@ class Note < ApplicationRecord
     validates_presence_of :matchup_note_id, if: :character_note_id_blank?
 
     validates :description, presence: true
-    validates :description, uniqueness: true
+    validates :description, uniqueness: {scope: :character_note_id, message: "No Duplicate note name for character"}, if: :matchup_note_id_blank?
+    validates :description, uniqueness: {scope: :matchup_note_id, message: "No Duplicate note name for matchup"}, if: :character_note_id_blank?
 
     def character_note_id_blank?
         character_note_id.blank?

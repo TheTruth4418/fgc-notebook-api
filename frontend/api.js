@@ -17,18 +17,15 @@ class API {
 }
     
 
-    fetchCharNotes(arg){
+    fetchCharNotes(name){
         let self = this
         let notesDiv = document.getElementById('notes')
-        return fetch( 'http://127.0.0.1:3000//characters/:id/character_notes/:id', {
-            method: "POST",
+        return fetch( `http://127.0.0.1:3000//characters/${name}/character_notes`, {
+            method: "GET",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify( {
-                arg
-            } )
             } )
             .then((response) => {
                 return response.json();
@@ -66,21 +63,16 @@ class API {
 
     fetchMuNotes(char, opp){
         let notesDiv = document.getElementById('notes')
-        return fetch( 'http://127.0.0.1:3000//characters/:id/matchup_notes/:id', {
-            method: "POST",
+        return fetch( `http://127.0.0.1:3000//characters/${char}/matchup_notes/${opp}`, {
+            method: "GET",
             headers: {
               "Content-Type": "application/json",
               "Accept": "application/json"
             },
-            body: JSON.stringify( {
-              char,
-              opp
-            } )
           } )
           .then((response) => {
               return response.json();
           }).then((data) => {
-            console.log(data)
             if (data.matchup_notes) {
              data.matchup_notes.forEach(muNote => {
               const ul = document.createElement("ul")
@@ -130,15 +122,11 @@ class API {
             return response.json();
         }).then((data) => {
             removeChildNodes(notes);
-      if (type === 'mu'){
-        console.log(data)
-        let opp = document.getElementsByName("opp")[0].value
-        api.fetchMuNotes(char, opp);
-      } else {
-        console.log(data)
-        api.fetchCharNotes(char)
-      };
-    });
+            if (data.message.description[0]){
+              alert(data.message.description[0])
+            }
+            type === 'char' ? api.fetchCharNotes(char) : api.fetchMuNotes(char, document.getElementsByName("opp")[0].value);
+          });
     }
 
     createNewNote(arg, type='char'){
@@ -153,6 +141,8 @@ class API {
           let submit = document.createElement("input")
           let body ;
         
+          desc.rows = "4"
+          desc.cols="50"
           descLabel.innerHTML = `Add to: ${arg.title}`
           submit.setAttribute("type", "submit")
           form2.append(descLabel,desc,br,submit)

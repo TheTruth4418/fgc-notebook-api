@@ -44,7 +44,7 @@ class NoteView{
             img1.src = `imgs/MK11/${charSelect.value}.png`
             img1.id = "charImg"
             cardImg.append(img1)
-            api.fetchCharNotes(charSelect.value);
+            console.log(api.fetchCharNotes(charSelect.value));
         });
     }
 
@@ -85,7 +85,7 @@ class NoteView{
 
         content.append(form)
         form.append(label1,charSelect,vs,oppSelect,submit)
-            submit.addEventListener("click", function(event){ 
+        submit.addEventListener("click", function(event){ 
             event.preventDefault();
             img1.src = `imgs/MK11/VS ${charSelect.value}.png`
             img1.id = "charLeft"

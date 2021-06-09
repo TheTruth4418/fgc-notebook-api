@@ -46,11 +46,11 @@ function viewMode(){
   cardDiv.append(notes,cardImg)
   p.innerHTML = "You are now in view mode. Matchup Notes or Viewer Notes?"
 
-  let ul = document.createElement("ul")
-  let li = document.createElement("li")
-  let li2 = document.createElement("li")
-  let button1 = document.createElement("button");
-  let button2 = document.createElement("button");
+  const ul = document.createElement("ul")
+  const li = document.createElement("li")
+  const li2 = document.createElement("li")
+  const button1 = document.createElement("button");
+  const button2 = document.createElement("button");
 
   li.append(button1)
   li2.append(button2)
@@ -80,11 +80,11 @@ function createMode(){
   notes.remove();
   p.innerHTML = "You are now in Create mode. Matchup Notes or Viewer Notes?"
 
-  let ul = document.createElement("ul")
-  let li = document.createElement("li")
-  let li2 = document.createElement("li")
-  let button1 = document.createElement("button");
-  let button2 = document.createElement("button");
+  const ul = document.createElement("ul")
+  const li = document.createElement("li")
+  const li2 = document.createElement("li")
+  const button1 = document.createElement("button");
+  const button2 = document.createElement("button");
 
   li.append(button1)
   li2.append(button2)

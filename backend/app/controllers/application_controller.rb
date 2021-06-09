@@ -1,3 +1,4 @@
+require 'pry'
 class ApplicationController < ActionController::API
     def create_characters(mode)
 
