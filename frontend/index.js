@@ -44,7 +44,7 @@ function viewMode(){
   cardDiv.remove();
   document.body.append(cardDiv)
   cardDiv.append(notes,cardImg)
-  p.innerHTML = "You are now in view mode. Matchup Notes or Viewer Notes?"
+  p.innerHTML = "You are now in view mode. Matchup Notes or Character Notes?"
 
   const ul = document.createElement("ul")
   const li = document.createElement("li")
@@ -105,7 +105,7 @@ function createMode(){
 
   choices.forEach(button => {
       button.addEventListener("click", event => {
-          new FormBuilder(event.path[0].id);
+          new NoteTitleBuilder(event.path[0].id);
       });
   });
 }
@@ -127,5 +127,13 @@ function switchMode(mode){
       case "create":
           createMode();
           break;
+  }
+}
+
+function descId(a,b){
+  if (a.id > b.id){
+    return 1
+  } else {
+    return -1
   }
 }

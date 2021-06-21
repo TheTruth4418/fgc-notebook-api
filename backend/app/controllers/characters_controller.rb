@@ -2,7 +2,7 @@ class CharactersController < ApplicationController
     def index
         characters = Character.all
 
-        if characters.length >= 0
+        if characters.length > 0
             render json: characters
         else
             render json: { message: 'No characters in database' }

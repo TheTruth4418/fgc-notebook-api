@@ -1,6 +1,6 @@
 const api = new API()
 
-class FormBuilder{
+class NoteTitleBuilder{
     constructor(type){
       this.type = type
       this.init = this.formMode(type);

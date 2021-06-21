@@ -1,4 +1,4 @@
-class Note < ApplicationRecord
+class BulletPoint < ApplicationRecord
     belongs_to :matchup_note, optional: true
     belongs_to :character_note, optional: true
 

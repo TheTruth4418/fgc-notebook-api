@@ -1,6 +1,6 @@
-class NotesController < ApplicationController
+class BulletPointsController < ApplicationController
     def create
-        note = Note.new(description: params[:desc])
+        note = BulletPoint.new(description: params[:desc])
         if params[:type] == "mu"
             note.matchup_note_id = params[:titleId]
             if note.valid?
@@ -21,7 +21,7 @@ class NotesController < ApplicationController
     end
 
     def destroy 
-        note = Note.find_by_id(params[:id])
-        note.destroy
+        bullet_point = BulletPoint.find_by_id(params[:id])
+        bullet_point.destroy
     end
 end

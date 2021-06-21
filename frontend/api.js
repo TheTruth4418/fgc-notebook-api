@@ -40,13 +40,23 @@ class API {
                 const del = document.createElement("button")
                 del.innerHTML = "Delete title"
                 ul.append(del)
+                charNote.notes.sort(function compare(a,b){
+                  if (a.id > b.id){
+                    return -1
+                  }
+                  if (a.id < b.id){
+                    return 1
+                  }
+                  return 0;
+                })
+                console.log(charNote.notes)
                 charNote.notes.forEach(note => {
-                    const delNote = document.createElement("button")
+                     const delNote = document.createElement("button")
                     delNote.innerHTML = "Delete Note"
                     const li = document.createElement("li")
                     li.innerHTML = note.description
                     ul.append(li,delNote) 
-                    delNote.addEventListener("click",function(){api.deleteNote(note, 'char')})
+                    delNote.addEventListener("click",function(){api.deleteNote(note, 'char')}) 
                 })
                 ul.append(newNote)
                 notesDiv.append(ul)
@@ -122,7 +132,7 @@ class API {
             return response.json();
         }).then((data) => {
             removeChildNodes(notes);
-            if (data.message.description[0]){
+            if (data.message.description != undefined){
               alert(data.message.description[0])
             }
             type === 'char' ? api.fetchCharNotes(char) : api.fetchMuNotes(char, document.getElementsByName("opp")[0].value);

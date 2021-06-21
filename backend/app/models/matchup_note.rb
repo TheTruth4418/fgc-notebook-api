@@ -1,6 +1,7 @@
 class MatchupNote < ApplicationRecord
-    belongs_to :matchup 
-    has_many :notes
+    belongs_to :user
+    has_one :character
+    has_many :bullet_points
 
     validates :matchup_id, presence: true
     validates :title, presence: true
