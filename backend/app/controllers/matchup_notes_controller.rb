@@ -1,9 +1,11 @@
 class MatchupNotesController < ApplicationController
     def create
+        game = Game.find_by_id(params[:game])
         char1 = Character.find_by(name: params[:char]) 
         char2 = Character.find_by(name: params[:opp])
-        mu = Matchup.find_by(character_id: char1.id, opponent_id: char2.id)
+        mu = Matchup.find_by(game_id: game.id, character_id: char1.id, opponent_id: char2.id)
         mu_note = MatchupNote.new(title: params[:title], matchup_id: mu.id)
+        #Pass through the User id
         if mu_note.valid?
             mu_note.save
             render json: {message:"Note saved for #{char1.name} vs #{char2.name} matchup."}
@@ -12,19 +14,13 @@ class MatchupNotesController < ApplicationController
         end
     end
 
-    def show 
-        char1 = Character.find_by(name: params[:char]) 
+    def show
+        game = Game.find_by_id(params[:game]) 
+        char1 = Character.find_by(name: params[:char])
         char2 = Character.find_by(name: params[:opp])
-        mu = Matchup.find_by(character_id: char1.id, opponent_id: char2.id)
-        if mu.matchup_notes.length > 0
-            render json: mu.to_json(:include => {
-                :matchup_notes => {:include => {
-                    :notes => {:only => [:id,:description]},
-                }, :only => [:id,:title],
-            }}, :except => [:created_at, :updated_at, :id])
-        else
-            render json: {message: "No Matchup Notes found for #{char1.name} vs #{char2.name}."}
-        end
+        muNote = MatchupNote.find_by(character_id: char1.id, opponent_id: char2.id)
+        #Also pass in the user id
+        render muNote.to_json()
     end
 
     def destroy

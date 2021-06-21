@@ -2,6 +2,7 @@ class CharacterNotesController < ApplicationController
     def create 
         character = Character.find_by(name: params[:char])
         charNote = CharacterNote.new(title: params[:charNote], character_id:  character.id)
+        #Pass thorugh the User Id
         if charNote.valid?
             charNote.save
             render json: {message:"Saved note for #{character.name}"}
@@ -11,17 +12,10 @@ class CharacterNotesController < ApplicationController
     end
 
     def show
-        note = Character.find_by(name: params[:name])
-        if note.character_notes.length > 0
-            render json: note.to_json(:include => {
-                :character_notes => {:include => {
-                    :notes => {:only => [:id,:description]},
-                }, :only => [:title, :id],
-            }}, :except => [:created_at, :updated_at])
-        else
-            render json: {message:"No notes found for #{note.name}"}
-        end
-        # display the title in h1 tag with the note
+        char = Character.find_by(name: params[:char])
+        note = CharacterNote.find_by(character_id: char.id)
+        #pass in user id
+        render json: note.to_json()
     end
 
     def destroy

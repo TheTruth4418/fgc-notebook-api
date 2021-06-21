@@ -9,6 +9,8 @@ class CharactersController < ApplicationController
         end
     end
 
+    
+
     def show
         character = Character.find_by_id(params[:id])
         if character 
