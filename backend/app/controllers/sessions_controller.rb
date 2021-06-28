@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
 
     def profile
         render json: { user: current_user.username }, status: :accepted
-      end
+    end
 
     def destroy
         reset_session

@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import {logIn} from '../actions/users'
+
 
 class LoginForm extends React.Component {
   constructor() {
@@ -9,23 +12,11 @@ class LoginForm extends React.Component {
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
   }
 
-  hadnleLogin = event => {
+  hadnleSubmit = event => {
     event.preventDefault();
-    this.setState({
-      username: event.target[0].value,
-      password: event.target[1].value
-    })
-    return fetch( 'http://127.0.0.1:3000/login', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(this.state)
-      } )
-      .then(response => response.json())
-      .then(data => console.log(data));
-  }
+    this.props.logInUser(this.state)
+    }
+
 
   handleUsernameInput = event => {
      this.setState({
@@ -41,16 +32,25 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.hadnleLogin}>
+      <div>
+      <form onSubmit={this.hadnleSubmit}>
         <h1>Login Form</h1>
         <label>Username:</label>
-        <input type="text" name="username" onChange={this.handleUsernameInput}/><br/>
+        <input type="text" name="username" onChange={this.handleUsernameInput} value={this.state.username}/><br/>
         <label>Password:</label>
-        <input type="text" name="password" onChange={this.handlePasswordInput}/><br/>
-        <input type="submit"/>
+        <input type="text" name="password" onChange={this.handlePasswordInput} value={this.state.password}/><br/>
+        <input type="submit" value="Log in!"/>
       </form>
+      </div>
     );
   }
 }
-  
-  export default LoginForm;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logInUser: (user) => dispatch(logIn(user))
+  }
+}
+
+  // connect returns function we can invoke again and pass our component
+  export default connect(null,mapDispatchToProps)(LoginForm);

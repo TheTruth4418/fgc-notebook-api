@@ -8,7 +8,7 @@ class UsersController < ApplicationController
           render json:{user: user.username, jwt: token }, status: :created
           render json: {message:"User saved, please Login!"}
         else 
-            render json: {message:"There was a problem creating a user please try again"}, status: :invalid
+            render json: {message:"There was a problem creating a user please try again"}, status: :not_acceptable
         end
       end
 end
