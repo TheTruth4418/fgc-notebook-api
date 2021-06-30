@@ -1,21 +1,21 @@
-let initialState = {
-    current_user: [],
-    logged_in: false
-}
+import {
+    LOGIN_USER
+} from '../actions/index'
 
-const usersReducer = (state = initialState, action) =>{
+let initState = {
+    currentUser: [],
+    loggedIn: false
+}
+const usersReducer = (state = initState, action) => {
     switch(action.type){
-        case "LOG_IN":
+        case LOGIN_USER:
             return {
-                current_user:[action.payload],
-                logged_in: true
+                ...state,
+                currentUser: [action.payload]
             }
-        case "LOG_OUT":
-            return initialState
         default:
             return state
     }
 }
-
 
 export default usersReducer;
