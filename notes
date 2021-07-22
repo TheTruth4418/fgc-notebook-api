@@ -1,5 +1,17 @@
-Organize the notes in descending order
-Newest to oldest
-JS side not Rails side
+Game: MK11
+Notes: {
+    charNotes: {
+        The Terminator:{
+            "Running Man Pressure": [bulletpoints]
+        }
+    },
+    muNotes: {
+        Term vs. Spawn: {
+            "Dealing with pressure": [bulletpoints]
+        }
+    }
+}
 
-Dont be afraid of breaking your cod
+When JSON is in state. 
+CharNote search => Grab the character name from the form to get the key
+MuNote search => Using string interpolation, ${char1.name} vs. ${char2.name}

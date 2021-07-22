@@ -1,6 +1,30 @@
-import { combineReducers } from 'redux'
-import usersReducer from './usersReducer'
+//import { combineReducers } from 'redux'
 
-export default combineReducers({
-  currentUser: usersReducer
-})
+const initialState = {
+    characters: {},
+    current_note: undefined
+}
+
+ const rootReducer = (state = initialState, action)=>{
+    switch(action.type){
+        case "GET_CHARS":
+            return{
+            characters: action.payload,
+            current_note: undefined
+        }
+        case "FETCH_NOTES":
+            return{
+                ...state,
+                current_note: action.payload
+            }
+        case "FETCH_MATCHUP_NOTES":
+            return {
+                ...state,
+                current_note: action.payload
+            }
+        default :
+            return state
+    }
+}
+
+export default rootReducer;

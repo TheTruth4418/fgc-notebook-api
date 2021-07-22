@@ -1,23 +1,25 @@
 class BulletPointsController < ApplicationController
     def create
-        note = BulletPoint.new(description: params[:desc])
-        if params[:type] == "mu"
-            note.matchup_note_id = params[:titleId]
-            if note.valid?
-                note.save
-                render json: {message: "Note saved!"}
-            else
-                render json: {message: note.errors.messages}
-            end
+       type = params[:pointObj][:type]
+       if type == "char"
+        char_note = CharacterNote.find_by_id(params[:pointObj][:id])
+        bullet_point = BulletPoint.new(character_note_id: params[:pointObj][:id], description: params[:pointObj][:description])
+        if bullet_point.valid?
+            bullet_point.save
+            render json: {message: "saved"}
         else
-            note.character_note_id = params[:titleId]
-            if note.valid?
-                note.save
-                render json: {message: "Note saved!"}
-            else
-                render json: {message: note.errors.messages}
-            end
+            render json: {message: "invalid"}
         end
+       else
+        mu_note = MatchupNote.find_by_id(params[:pointObj][:id])
+        bullet_point = BulletPoint.new(matchup_note_id: params[:pointObj][:id], description: params[:pointObj][:description])
+        if bullet_point.valid?
+            bullet_point.save
+            render json: {message: "saved"}
+        else
+            render json: {message: "invalid"}
+        end
+       end
     end
 
     def destroy 

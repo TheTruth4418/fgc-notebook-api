@@ -1,0 +1,1 @@
+import NotFound from './404'

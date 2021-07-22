@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
   def create
-    @user = User.find_by(:username => params[:user][:username])
-    if @user && @user.authenticate(params[:user][:password])
-        session[:user_id] = @user.id
-        render json: user, status:200
+      user = User.new(
+      username: params[:userObj][:username],
+      password: params[:userObj][:password]
+    )
+    if user.valid?
+      user.save
+      render json: {message: "User #{user.username} saved! Please login using your credentials!"}
     else
-      rebder json: {message: "User credentials are invalid please try again."}
+      render json: {message: "The user could not be created, ensure you have a unique username and a Password!"}
     end
-end
-
+  end
 end

@@ -1,6 +1,8 @@
 class Game < ApplicationRecord
     has_many :characters
     has_many :matchups
+    has_many :character_notes
+    has_many :matchup_notes
     validates :title, uniqueness: true
 
 
@@ -32,6 +34,7 @@ class Game < ApplicationRecord
                     "Robocop", "Skarlet", "Erron Black", "Dvorah", "Kotal Kahn", "Sheeva",
                     "Rambo", "The Terminator", "Geras", "Kollector", "Sindel", "Milleena",
                     "Cetrion", "Fujin", "Rain"]
+                    characters.sort
                     create_chars(characters, self.id)
         when "Tekken 7"
             characters =["Akuma", "Alisa", "Anna", "Armor King", "Asuka", "Bob", "Bryan",
@@ -45,6 +48,7 @@ class Game < ApplicationRecord
         when "Guilty Gear Strive"
             characters=["Sol", "Ky", "May", "Axl", "Chipp", "Potemkin", "Faust", "Millia", "Zato-1",
                         "Ramlethal", "Leo", "Nagoriyuki", "Giovanna", "Anji", "I-no"]
+                        characters.sort
                         create_chars(characters, self.id)
         else
             nil

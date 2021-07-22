@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {login} from '../actions/users.js'
+import {login, signup} from '../actions/users.js'
 
 class Login extends Component{
 
@@ -14,7 +14,7 @@ class Login extends Component{
 
     onSubmit = event => {
         event.preventDefault()
-        this.props.loginUser(this.state)
+        event.target.id === "signup" ? this.props.signupUser(this.state) : this.props.loginUser(this.state);
         this.setState({
             username: '',
             password: ''
@@ -24,12 +24,13 @@ class Login extends Component{
     render(){
         return( 
             <>
-                <form onSubmit = {this.onSubmit}>
+                <form>
                     <label>Username</label>
                     <input value={this.state.username} name="username" type="text" onChange={this.onChange} />
                     <label>Password</label>
                     <input value={this.state.password} name="password" type="text" onChange={this.onChange} />
-                    <input type = "submit" />
+                    <button id = "signup" onClick={this.onSubmit}>SignUp!</button>
+                    <button id = "login" onClick={this.onSubmit}>Log In!</button>
                 </form>
             </>
         )
@@ -38,7 +39,7 @@ class Login extends Component{
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signup: () => dispatch({ type: 'SIGNUP_USER' }),
+        signupUser: (userObj) => dispatch(signup(userObj)),
         loginUser: (userObj) => dispatch(login(userObj))
     }
 }

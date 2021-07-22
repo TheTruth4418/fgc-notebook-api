@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 2021_06_20_235443) do
   create_table "character_notes", force: :cascade do |t|
     t.string "title"
     t.integer "character_id"
-    t.integer "user_id"
     t.integer "game_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -42,9 +41,10 @@ ActiveRecord::Schema.define(version: 2021_06_20_235443) do
 
   create_table "matchup_notes", force: :cascade do |t|
     t.string "title"
-    t.integer "matchup_id"
-    t.integer "user_id"
     t.integer "game_id"
+    t.integer "character_id"
+    t.integer "opponent_id"
+    t.integer "matchup_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -54,16 +54,6 @@ ActiveRecord::Schema.define(version: 2021_06_20_235443) do
     t.integer "character_id"
     t.integer "opponent_id"
     t.integer "game_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "password_digest"
-    t.string "email"
-    t.string "uid"
-    t.string "provider"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
