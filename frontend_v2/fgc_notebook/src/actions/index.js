@@ -123,3 +123,53 @@ export const fetchMatchupNotes = (obj) => {
         }
     }
 }
+
+export const deletePoint = (dataObj) => {
+    let choice = window.confirm("Are you sure you want to delete this point?")
+    if (choice === true){
+    return (dispatch) => {
+        fetch(`http://127.0.0.1:3000/bullet_points/${dataObj.id}/delete`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+        }).then(data => {
+            dataObj.type === "char" ?  dispatch(fetchNotes(dataObj.currentObj)) : dispatch(fetchMatchupNotes(dataObj.currentObj))
+          })
+    }
+    } else {
+        return {
+            type: "NOTHING"
+        }
+    }
+}
+
+export const deleteNote = (dataObj) => {
+    let url;
+    dataObj.type === 'char' ? url = `http://127.0.0.1:3000/character_notes/${dataObj.id}/delete`: url = `http://127.0.0.1:3000/matchup_notes/${dataObj.id}/delete`
+    let choice = window.confirm("Are you sure you want to delete this Note?")
+    if (choice === true){
+    return (dispatch) => {
+        fetch(url, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+        }).then(data => {
+            dataObj.type === "char" ?  dispatch(fetchNotes(dataObj.currentObj)) : dispatch(fetchMatchupNotes(dataObj.currentObj))
+          })
+    }
+    } else {
+        return {
+            type: "NOTHING"
+        }
+    }
+}
+
+export const refreshCurrentNote = () => {
+    return {
+        type: "REFRESH_CURRENT_NOTE"
+    }
+}

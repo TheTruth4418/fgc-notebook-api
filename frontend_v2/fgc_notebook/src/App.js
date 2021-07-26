@@ -1,16 +1,16 @@
 import { BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom';
-import Welcome from './component/Welcome'
-import Create from './component/Create'
-import GameSelect from './component/GameSelect'
-import CharacterNoteSelect from './component/CharacterNoteSelect';
-import MatchupNoteSelect from './component/MatchupNoteSelect';
-import ViewSelect from './component/ViewSelect';
+import Welcome from './selections/Welcome'
+import Create from './selections/Create'
+import GameSelect from './selections/GameSelect'
+import CharacterNoteSelect from './characterNotes/CharacterNoteSelect';
+import MatchupNoteSelect from './matchupNotes/MatchupNoteSelect';
+import ViewSelect from './selections/ViewSelect';
 
 
 function App() {
   const history = useHistory();
   return (
-    <div>
+    <div id="app">
       <Router>
         <Switch>
           <Route exact path="/" component={Welcome} history={history} />

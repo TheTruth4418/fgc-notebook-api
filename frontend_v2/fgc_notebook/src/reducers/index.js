@@ -22,6 +22,11 @@ const initialState = {
                 ...state,
                 current_note: action.payload
             }
+        case "REFRESH_CURRENT_NOTE":
+            return {
+                ...state,
+                current_note: undefined
+            }
         default :
             return state
     }
