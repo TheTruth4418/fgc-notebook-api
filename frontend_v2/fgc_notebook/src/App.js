@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom';
-import Welcome from './selections/Welcome'
+import NavBar from './selections/NavBar'
+import Home from './selections/Home'
 import Create from './selections/Create'
 import GameSelect from './selections/GameSelect'
 import CharacterNoteSelect from './characterNotes/CharacterNoteSelect';
@@ -10,10 +11,11 @@ import ViewSelect from './selections/ViewSelect';
 function App() {
   const history = useHistory();
   return (
-    <div id="app">
+    <>
       <Router>
+      <NavBar />
         <Switch>
-          <Route exact path="/" component={Welcome} history={history} />
+          <Route exact path="/"  history={history} component={Home}/>
           <Route exact path="/view" component={ViewSelect} />
           <Route exact path="/view/character_notes" component={GameSelect} />
           <Route exact path="/view/character_notes/Mortal Kombat 11" component={CharacterNoteSelect}/>
@@ -26,7 +28,7 @@ function App() {
           <Route exact path="/create" component={Create} />
         </Switch>
       </Router>
-    </div>
+    </>
   )
 }
 

@@ -50,8 +50,6 @@ class MatchupNoteSelect extends Component {
     }
 
     render(){
-        let character = this.state.character
-        let opponent = this.state.opponent
         return(
             <>
             <form onSubmit={this.onSubmit}>
