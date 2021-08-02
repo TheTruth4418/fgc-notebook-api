@@ -1,0 +1,54 @@
+/* Matchup Styling*/
+.title {
+    color: white;
+    font-family: MK11;
+}
+.points{
+    color: white;
+    font-family:MK3;
+}
+.noteCard a{
+    color: red;
+    font-family:MK3;
+    display: flex;
+}
+
+h3{
+    color: gray;
+    font-family: MK3;
+}
+
+.characters{
+    color: white;
+    font-family: MK11;
+}
+.cardImg img{
+    float: left;
+  width: 30%;
+  padding: 5px;
+}
+
+#vs2 {
+    margin-top: 5%;
+    height:100px;
+    width:100px;
+}
+
+.noteCard::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+/* Character */
+
+.char {
+    height: 500px;
+    width: 500px
+}
+.charChild{
+    float:left
+}
+.charChild:first-child{
+    float: left;
+}

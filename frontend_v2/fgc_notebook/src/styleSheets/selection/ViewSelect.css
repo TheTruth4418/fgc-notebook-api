@@ -5,6 +5,13 @@
 .container {
     display: flex;
 }
+
+.container .child a {
+    color: white;
+    font-family: MK11;
+    text-decoration: none;
+}
+
 .child {
     flex: 1;
     text-align: center;
@@ -25,3 +32,12 @@
     -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
 }
+
+#info {
+    font-family: MK3;
+    text-decoration: none;
+}
+
+a, a:visited, a:hover, a:active {
+    color: inherit;
+  }

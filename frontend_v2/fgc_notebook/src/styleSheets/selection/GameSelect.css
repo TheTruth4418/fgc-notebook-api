@@ -1,0 +1,25 @@
+.games a{
+    text-decoration: none;
+}
+
+.games h2 {
+    text-align: center;
+}
+
+#back {
+    color: white;
+    font-family: MK11;
+    text-decoration: none;
+}
+
+.games img{
+    height: 200px;
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#t7{
+    height:300px;
+}

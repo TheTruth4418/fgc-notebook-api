@@ -24,11 +24,13 @@ class GameSelect extends Component{
      let match = this.props.match
     return(
         <>
-            <p>Choose your Destiny</p>
-            <Link to={`${match.url}/Mortal Kombat 11`}><img src={MK11} alt=""/> </Link>
-            <Link to={`${match.url}/Tekken 7`}> <img src={T7} alt=""/> </Link>
-            <Link to={`${match.url}/Guilty Gear Strive`}> <img src={GGS} alt=""/> </Link><br/>
-            <NavLink to="/">Go Back</NavLink>
+            <div className="games">
+                <h2>Choose your Destiny</h2>
+                <Link to={`${match.url}/Mortal Kombat 11`}><img src={MK11} alt=""/> </Link>
+                <Link to={`${match.url}/Tekken 7`}> <img src={T7} alt="" id="t7"/> </Link>
+                <Link to={`${match.url}/Guilty Gear Strive`}> <img src={GGS} alt=""/> </Link><br/>
+                <Link to="/view" id="back">Go Back</Link>
+            </div>
         </>
     )
  }

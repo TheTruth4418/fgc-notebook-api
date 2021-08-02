@@ -60,7 +60,7 @@ class MatchupNoteSelect extends Component {
                 <input type="submit" /> 
             </form>
             {this.props.current_note === undefined ?  console.log("empty") : <MatchupNoteCard current_note={this.props.current_note}/>}
-            <Link to="/view/matchup_notes">Go Back</Link>
+            <Link to="/view/matchup_notes" id="back">Go Back</Link>
             </>
         )
     }

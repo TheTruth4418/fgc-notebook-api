@@ -34,17 +34,17 @@ class MatchupNoteList extends Component {
         let id = this.props.muNote.id
         points.forEach(point => pointsArr.push(
         <>
-            <li key={point.id}>{point.description} <DeletePoint id={point.id} type="mu" currentObj={this.muObj}/></li>
+            <li className="points" key={point.id}>{point.description} <DeletePoint id={point.id} type="mu" currentObj={this.muObj}/></li>
         </>
         ))
         return (
-            <>
-                {title}<DeleteNote id={id} key={id} type="mu" currentObj={this.muObj} />
-                <button onClick={this.onClick}>New Bullet Point</button><br/>
+            <div className="Info">
+                <h3 class="title">{title} <DeleteNote id={id} key={id} type="mu" currentObj={this.muObj}/></h3>
                 {pointsArr}
                 {this.state.form ===  true ? 
                 <NewBulletPointForm id={id} key={id} removeForm={this.cancel} submit={this.submit} type="mu"/> : null}
-            </>
+                <button onClick={this.onClick}>New Bullet Point</button><br/>
+            </div>
         )
     }
 }

@@ -6,6 +6,7 @@ import GameSelect from './selections/GameSelect'
 import CharacterNoteSelect from './characterNotes/CharacterNoteSelect';
 import MatchupNoteSelect from './matchupNotes/MatchupNoteSelect';
 import ViewSelect from './selections/ViewSelect';
+import './App.css'
 
 
 function App() {

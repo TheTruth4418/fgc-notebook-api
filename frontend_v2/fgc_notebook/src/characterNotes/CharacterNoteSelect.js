@@ -49,7 +49,7 @@ class CharacterNoteSelect extends Component{
                 <select name="character" id="fighter" value={this.state.character} onChange={this.onChange}/>
             </form>
             {this.props.current_note === undefined ?  console.log("empty") : <NoteCard/>}
-            <Link to="/view/character_notes">Go Back</Link>
+            <Link to="/view/character_notes" id="back">Go Back</Link>
             </>
         )
     }

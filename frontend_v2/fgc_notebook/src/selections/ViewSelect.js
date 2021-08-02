@@ -3,7 +3,6 @@ import shao from "../images/shaomk3.gif"
 import sub from "../images/submk3.gif"
 import scorp from "../images/scorpmk2.gif"
 import vs from "../images/vs.png"
-import '../styleSheets/selection/ViewSelect.css'
 
  const ViewSelect = () => {
      return(

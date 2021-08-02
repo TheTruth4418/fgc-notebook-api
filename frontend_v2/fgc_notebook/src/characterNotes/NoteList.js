@@ -34,11 +34,11 @@ class NoteList extends Component {
         let points = this.props.charNote.bullet_points
         let id = this.props.charNote.id
         points.forEach(point => pointsArr.push(
-            <li key={point.id}>{point.description} <DeletePoint id={point.id} type="char" currentObj={this.charObj}/></li>
+            <li className="points" key={point.id}>{point.description} <DeletePoint id={point.id} type="char" currentObj={this.charObj}/></li>
         ))
         return (
             <>
-                {title}<DeleteNote id={id} type="char" currentObj={this.charObj} />
+                <h3 class="title">{title} <DeleteNote id={id} type="char" currentObj={this.charObj} /></h3>
                 {pointsArr}
                 <button onClick={this.onClick}>New Bullet Point</button><br/>
                 {this.state.form ===  true ? 
