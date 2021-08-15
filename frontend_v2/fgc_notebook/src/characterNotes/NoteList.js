@@ -38,7 +38,7 @@ class NoteList extends Component {
         ))
         return (
             <>
-                <h3 class="title">{title} <DeleteNote id={id} type="char" currentObj={this.charObj} /></h3>
+                <h3 className="title">{title} <DeleteNote id={id} type="char" currentObj={this.charObj} /></h3>
                 {pointsArr}
                 <button onClick={this.onClick}>New Bullet Point</button><br/>
                 {this.state.form ===  true ? 

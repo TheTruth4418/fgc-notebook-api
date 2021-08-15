@@ -12,7 +12,7 @@ function MatchupNoteCard(props){
     })
     return (
         <div className="noteCard">
-            <h1 class="characters">{`${character} vs. ${opponent}`}</h1>
+            <h1 className="characters">{`${character} vs. ${opponent}`}</h1>
             <div className="cardImg">
                 <img src={require(`../images/${game}/${character}.png`).default} alt=""/>
             </div>

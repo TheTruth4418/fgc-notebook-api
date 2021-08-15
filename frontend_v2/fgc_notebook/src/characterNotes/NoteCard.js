@@ -10,8 +10,8 @@ function NoteCard(props){
         notesArr.push(<NoteList charNote={ele} key={index} char={note.name}/>)
     })
     return (
-        <div class="noteCard">
-            <h1 class="characters">{note.name}</h1>
+        <div className="noteCard">
+            <h1 className="characters">{note.name}</h1>
             <div className="charChild">{notesArr.length === 0 ? <h3>{`No notes found for ${character}`}</h3>: notesArr }</div>
             <div className="charChild"><img src={require(`../images/${game}/${character}.png`).default} alt="" className="char" /></div>
         </div>

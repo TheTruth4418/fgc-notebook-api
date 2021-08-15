@@ -7,7 +7,7 @@
     src: url("./styleSheets/fonts/MK3.ttf") format("truetype");
 }
  body{
-     background-color: black;
+    background-color: black;
  }
 
  h2 {
@@ -20,5 +20,5 @@
 @import url("./styleSheets/selection/NavBar.css");
 @import url("./styleSheets/selection/ViewSelect.css");
 
-@import url("./styleSheets/characterNotes/NoteCard.css");
-@import url("./styleSheets/characterNotes/NoteForm.css");
+@import url("./styleSheets/NoteCard.css");
+@import url("./styleSheets/NoteForm.css");

@@ -19,7 +19,7 @@ class MatchupNoteSelect extends Component {
         let select = document.getElementById("fighter")
         let select2 = document.getElementById("fighter2")
         this.removeChildNodes(select)
-        for(const [key] of Object.entries(this.props.characters[this.state.game])){
+        for(const [key] of Object.entries(this.props.characters[this.state.game]).sort()){
             const char = document.createElement("option")
             const opp = document.createElement("option")
             char.value = key

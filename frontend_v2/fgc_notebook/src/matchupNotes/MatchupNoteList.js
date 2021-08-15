@@ -39,7 +39,7 @@ class MatchupNoteList extends Component {
         ))
         return (
             <div className="Info">
-                <h3 class="title">{title} <DeleteNote id={id} key={id} type="mu" currentObj={this.muObj}/></h3>
+                <h3 className="title">{title} <DeleteNote id={id} key={id} type="mu" currentObj={this.muObj}/></h3>
                 {pointsArr}
                 {this.state.form ===  true ? 
                 <NewBulletPointForm id={id} key={id} removeForm={this.cancel} submit={this.submit} type="mu"/> : null}

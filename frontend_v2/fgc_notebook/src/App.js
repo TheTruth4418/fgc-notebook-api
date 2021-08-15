@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import NavBar from './selections/NavBar'
 import Home from './selections/Home'
 import Create from './selections/Create'
@@ -6,17 +6,17 @@ import GameSelect from './selections/GameSelect'
 import CharacterNoteSelect from './characterNotes/CharacterNoteSelect';
 import MatchupNoteSelect from './matchupNotes/MatchupNoteSelect';
 import ViewSelect from './selections/ViewSelect';
+import LiveCoding from './LiveCoding';
 import './App.css'
 
 
 function App() {
-  const history = useHistory();
   return (
     <>
       <Router>
       <NavBar />
         <Switch>
-          <Route exact path="/"  history={history} component={Home}/>
+          <Route exact path="/" component={Home}/>
           <Route exact path="/view" component={ViewSelect} />
           <Route exact path="/view/character_notes" component={GameSelect} />
           <Route exact path="/view/character_notes/Mortal Kombat 11" component={CharacterNoteSelect}/>

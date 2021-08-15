@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { getChars } from '../actions/index'
 import { connect } from 'react-redux'
-import {Link, NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import {Link} from "react-router-dom/cjs/react-router-dom.min";
 import MK11 from "../images/logos/Mortal Kombat 11.png"
 import GGS from "../images/logos/Guilty Gear Strive.png"
 import T7 from "../images/logos/Tekken 7.png"
@@ -12,12 +12,6 @@ class GameSelect extends Component{
 
     componentDidMount(){
         this.props.getCharacters();
-    }
-
-    onClick = e => {
-        this.setState({
-            game: e.target.id
-        })
     }
 
  render(){

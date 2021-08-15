@@ -9,16 +9,16 @@ import vs from "../images/vs.png"
          <>
             <h2 id="info">Which would you like to view?</h2>
 
-            <div class="container">
-                <div class="child">
+            <div className="container">
+                <div className="child">
                     <NavLink to="/view/character_notes" > Character Notes </NavLink><br/>
-                    <img src={shao} alt="" class="solo"/>
+                    <img src={shao} alt="" className="solo"/>
                 </div>
-                <div class="child" id="child2">
+                <div className="child" id="child2">
                     <NavLink to="/view/matchup_notes" >Matchup Notes</NavLink><br/>
-                    <img src={scorp} alt="" class="vs" id="p1"/>
-                    <img src={vs} alt="" class="vs" id="vs"/>
-                    <img src={sub} alt="" class="vs" id="p2"/>
+                    <img src={scorp} alt="" className="vs" id="p1"/>
+                    <img src={vs} alt="" className="vs" id="vs"/>
+                    <img src={sub} alt="" className="vs" id="p2"/>
                 </div>
             </div>
         </>

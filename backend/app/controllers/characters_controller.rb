@@ -12,20 +12,7 @@ class CharactersController < ApplicationController
         obj={}
         arg.all.each do |char|
             obj[char.name] = {
-                "id" => char.id,
-                "Character_Notes": grab_notes(char.character_notes),
-                "Matchup_notes" => char.matchup_notes
-            }
-        end
-        obj
-    end
-
-    def grab_notes(arg)
-        obj={}
-        arg.each do |charNote|
-            obj[charNote.title] = {
-                "Bullet Points" => charNote.bullet_points,
-                "Id" => charNote.id
+                "id" => char.id
             }
         end
         obj

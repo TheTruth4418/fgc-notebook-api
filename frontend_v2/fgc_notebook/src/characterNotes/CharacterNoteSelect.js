@@ -26,7 +26,7 @@ class CharacterNoteSelect extends Component{
         let select = document.getElementById("fighter")
         let game = this.state.game
         this.removeChildNodes(select)
-        for(const [key] of Object.entries(this.props.characters[game])){
+        for(const [key] of Object.entries(this.props.characters[game]).sort()){
             const char = document.createElement("option")
             char.value = key
             char.innerHTML = key
