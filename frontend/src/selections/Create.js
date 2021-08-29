@@ -36,8 +36,8 @@ class Create extends Component{
             <button id="mu" onClick={this.mu}>Matchup Note</button>
             <NavLink to="/">Go Back</NavLink>
             <div id="form">
-                {this.state.char === true ? <NewCharacterNote characters={this.props.characters}/> : null}
-                {this.state.mu === true ? <NewMatchupNote characters={this.props.characters}/> : null}
+                {this.state.char === true && this.props.characters ? <NewCharacterNote characters={this.props.characters}/> : null}
+                {this.state.mu === true && this.props.characters ? <NewMatchupNote characters={this.props.characters}/> : null}
              </div>
             </>
         )

@@ -8,6 +8,7 @@ const initialState = {
     switch(action.type){
         case "GET_CHARS":
             return{
+                ...state,
             characters: action.payload,
             current_note: undefined
         }
