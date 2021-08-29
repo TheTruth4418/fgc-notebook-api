@@ -6,7 +6,6 @@ import GameSelect from './selections/GameSelect'
 import CharacterNoteSelect from './characterNotes/CharacterNoteSelect';
 import MatchupNoteSelect from './matchupNotes/MatchupNoteSelect';
 import ViewSelect from './selections/ViewSelect';
-import LiveCoding from './LiveCoding';
 import './App.css'
 
 

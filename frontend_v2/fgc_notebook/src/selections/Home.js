@@ -1,6 +1,6 @@
 import GGS from '../images/GGSMM.png'
 import MK from '../images/MKMM.png'
-import T7 from '../images/T7MM'
+import T7 from '../images/T7MM.png'
 function Home(){
     return (
         <div>

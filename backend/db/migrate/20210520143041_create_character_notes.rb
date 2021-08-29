@@ -4,6 +4,7 @@ class CreateCharacterNotes < ActiveRecord::Migration[6.1]
       t.string :title
       t.integer :character_id
       t.integer :game_id
+      t.integer :user_id
 
       t.timestamps
     end

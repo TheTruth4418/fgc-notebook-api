@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_20_235443) do
+ActiveRecord::Schema.define(version: 2021_08_29_013433) do
 
   create_table "bullet_points", force: :cascade do |t|
     t.text "description"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_235443) do
     t.string "title"
     t.integer "character_id"
     t.integer "game_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_235443) do
     t.integer "character_id"
     t.integer "opponent_id"
     t.integer "matchup_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -54,6 +56,14 @@ ActiveRecord::Schema.define(version: 2021_06_20_235443) do
     t.integer "character_id"
     t.integer "opponent_id"
     t.integer "game_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

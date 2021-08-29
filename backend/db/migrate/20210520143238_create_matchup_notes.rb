@@ -6,6 +6,7 @@ class CreateMatchupNotes < ActiveRecord::Migration[6.1]
       t.integer :character_id
       t.integer :opponent_id
       t.integer :matchup_id
+      t.integer :user_id
 
       t.timestamps
     end
