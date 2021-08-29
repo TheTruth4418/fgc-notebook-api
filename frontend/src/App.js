@@ -6,16 +6,26 @@ import GameSelect from './selections/GameSelect'
 import CharacterNoteSelect from './characterNotes/CharacterNoteSelect';
 import MatchupNoteSelect from './matchupNotes/MatchupNoteSelect';
 import ViewSelect from './selections/ViewSelect';
+import Login from './selections/Login'
+import Signup from './selections/Signup'
+import { fetchUser } from './actions';
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
 import './App.css'
 
 
-function App() {
+function App(props) {
+  useEffect(() => {
+    props.fetchUser()
+  })
   return (
     <>
       <Router>
       <NavBar />
         <Switch>
           <Route exact path="/" component={Home}/>
+          <Route exact path="/signup" component={Signup}/>
+          <Route exact path="/login" component={Login}/>
           <Route exact path="/view" component={ViewSelect} />
           <Route exact path="/view/character_notes" component={GameSelect} />
           <Route exact path="/view/character_notes/Mortal Kombat 11" component={CharacterNoteSelect}/>
@@ -32,4 +42,8 @@ function App() {
   )
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  fetchUser: () => dispatch(fetchUser())
+})
+
+export default connect(null, mapDispatchToProps)(App);

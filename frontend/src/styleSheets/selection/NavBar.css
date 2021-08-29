@@ -8,12 +8,26 @@
     
 .nav ul li {float: left;}
 
-.nav ul li a {
+.nav ul li a{
     font-family:MK11;
     display: block;
     color:white;
     text-align: center;
     padding: 14px 16px;
+    text-decoration: none;
+}
+
+.nav ul li {
+    height: auto ;
+    margin-top: auto;
+    margin-bottom:auto;
+}
+
+.nav ul li p{
+    font-family:MK11;
+    display: block;
+    color:white;
+    text-align: center;
     text-decoration: none;
 }
 

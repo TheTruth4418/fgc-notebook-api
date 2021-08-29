@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   get '/characters' => 'characters#index'
 
   post '/signup' => 'users#create'
-  post '/login' => 'sessions#create'
-  post '/logout' => 'sessions#destroy'
+  post '/login' => 'auth#create'
+  get '/user' => 'users#user'
   get '/notes' => 'character_notes#index'
   get '/games' => 'games#index'
   post '/bullet_points/new' => 'bullet_points#create'

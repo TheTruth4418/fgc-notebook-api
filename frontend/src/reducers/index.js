@@ -1,8 +1,7 @@
 //import { combineReducers } from 'redux'
 
 const initialState = {
-    characters: {},
-    current_note: undefined
+
 }
 
  const rootReducer = (state = initialState, action)=>{
@@ -27,6 +26,10 @@ const initialState = {
                 ...state,
                 current_note: undefined
             }
+        case 'LOGIN_USER':
+            return {...state, currentUser: action.payload}
+        case 'LOGOUT_USER':
+            return { ...state, currentUser: undefined }
         default :
             return state
     }
