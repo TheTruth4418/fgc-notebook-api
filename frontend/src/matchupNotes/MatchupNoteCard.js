@@ -2,19 +2,20 @@ import MatchupNoteList from "./MatchupNoteList";
 import vs from "../images/vs.png"
 
 function MatchupNoteCard(props){
-    let notes = props.current_note.matchup_notes
-    let character = props.current_note.character.name
-    let opponent = props.current_note.opponent.name
+    let note = props.note
     let game =  window.location.pathname.split("/")[3].split("%20").join(" ")
     let notesArr = []
-    notes.forEach((ele, index) => {
-        notesArr.push(<MatchupNoteList muNote={ele} key={index} char={character} opp={opponent}/>)
-    })
-    return (
-        <div className="noteCard">
-            <h1 className="characters">{`${character} vs. ${opponent}`}</h1>
+    let char = note.char;
+    let opp = note.opp;
+    //notesArr = note.notes.map((ele, index) => (<MatchupNoteList muNote={ele} key={index} char={props.character} opp={props.opponent}/> ))
+    console.log(note)
+
+  return (
+      <p>jo</p>
+       /*  <div className="noteCard">
+            <h1 className="characters">{`${char} vs. ${opp}`}</h1>
             <div className="cardImg">
-                <img src={require(`../images/${game}/${character}.png`).default} alt=""/>
+                <img src={require(`../images/${game}/${char}.png`).default} alt=""/>
             </div>
 
             <div className="cardImg">
@@ -22,11 +23,11 @@ function MatchupNoteCard(props){
             </div>
 
             <div className="cardImg">
-                <img src={require(`../images/${game}/${opponent}.png`).default} alt=""/>
+                <img src={require(`../images/${game}/${opp}.png`).default} alt=""/>
             </div>
-            {notesArr.length === 0 ? <h3>{`No notes found for ${character} vs ${opponent}`}</h3>: notesArr }
-        </div>
-    )
-}
+            {notesArr.length === 0 ? <h3>{`No notes found for ${char} vs ${opp}`}</h3>: <p>hi</p> }
+        </div> */
+    ) 
+  }
 
 export default MatchupNoteCard

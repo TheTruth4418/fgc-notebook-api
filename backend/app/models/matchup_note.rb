@@ -10,4 +10,5 @@ class MatchupNote < ApplicationRecord
     validates :title, presence: true, :uniqueness => true
 
     scope :pull, -> (id) { where(game_id: id ) }
+    scope :user_notes, -> (id) {where(character_id: id)}
 end
