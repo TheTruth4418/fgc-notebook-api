@@ -41,14 +41,17 @@ class CharacterNoteSelect extends Component{
        }
     }
 
+
+
     render(){
+        let value = document.getElementById("fighter")
         return (
             <>
            <form onSubmit={this.onSubmit}>
                 <label>Character</label>
                 <select name="character" id="fighter" value={this.state.character} onChange={this.onChange}/>
             </form>
-            {this.props.current_note === undefined ?  console.log("empty") : <NoteCard/>}
+            {this.props.current_note === undefined ?  console.log("empty") : <NoteCard character={value.value}/>}
             <Link to="/view/character_notes" id="back">Go Back</Link>
             </>
         )

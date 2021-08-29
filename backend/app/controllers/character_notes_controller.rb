@@ -1,9 +1,10 @@
 class CharacterNotesController < ApplicationController
     def create 
+        user = current_user
         character = Character.find_by(name: params[:noteObj][:character])
         game = Game.find_by(title: params[:noteObj][:game])
-        charNote = CharacterNote.new(title: params[:noteObj][:title], character_id: character.id, game_id: game.id)
-        if charNote.valid? && character.game_id == game.id
+        charNote = CharacterNote.new(title: params[:noteObj][:title], character_id: character.id, game_id: game.id, user_id: user.id)
+        if charNote.valid? && character.game_id == game.id && current_user
             charNote.save
             render json: {message:"Saved note for #{character.name}"}
         else
@@ -25,14 +26,14 @@ class CharacterNotesController < ApplicationController
 
     def show
         game = params[:game]
+        user = current_user
         character = Character.find_by(name: params[:character])
-        notes = character.character_notes
+        notes = user.character_notes.user_notes(character.id)
 
-        render json: character.to_json(:include => {
-            :character_notes => {:include => {
-                :bullet_points => {:only => [:description, :id]}
-            }, :only => [:title, :id]}
-        }, :only => [:name])
+        render json: notes.to_json(:include => {
+                :bullet_points => {:only => [:description, :id]},
+                :character => {:only=> [:name]}
+        }, :except => [:created_at, :updated_at])
         
     end
     

@@ -5,15 +5,14 @@ function NoteCard(props){
     let note = props.current_note
     let notesArr = []
     let game =  window.location.pathname.split("/")[3].split("%20").join(" ")
-    let character = note.name
-    note.character_notes.forEach((ele, index) => {
-        notesArr.push(<NoteList charNote={ele} key={index} char={note.name}/>)
-    })
+    if(note.length !== 0){
+        notesArr = note.map((x, y) =><NoteList charNote={x} key={y} char={props.character}/>)
+    }
     return (
         <div className="noteCard">
-            <h1 className="characters">{note.name}</h1>
-            <div className="charChild">{notesArr.length === 0 ? <h3>{`No notes found for ${character}`}</h3>: notesArr }</div>
-            <div className="charChild"><img src={require(`../images/${game}/${character}.png`).default} alt="" className="char" /></div>
+            <h1 className="characters">{props.character}</h1>
+            <div className="charChild">{notesArr.length === 0 ? <h3>{`No notes found for ${props.character}`}</h3>: notesArr }</div>
+            <div className="charChild"><img src={require(`../images/${game}/${props.character}.png`).default} alt="" className="char" /></div>
         </div>
     )
 }

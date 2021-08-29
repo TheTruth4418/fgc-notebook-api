@@ -1,6 +1,5 @@
-const token = localStorage.token
-
 export const getChars = () => {
+    let token = localStorage.token
     if(token){
         return (dispatch) => {
             fetch( 'http://127.0.0.1:3000/characters', {
@@ -23,6 +22,7 @@ export const getChars = () => {
 }
 
 export const newNote = (noteObj) => {
+    let token = localStorage.token
     if(token){
         return (dispatch) => {
             fetch('http://127.0.0.1:3000/character_notes/new', {
@@ -35,12 +35,14 @@ export const newNote = (noteObj) => {
             }).then(resp => resp.json())
               .then(data => {
                   alert(data.message)
+                  console.log(data)
               })
         }
     }
 }
 
 export const newMuNote = (noteObj) => {
+    let token = localStorage.token
     if(token){
         return (dispatch) => {
             fetch('http://127.0.0.1:3000/matchup_notes/new', {
@@ -59,6 +61,7 @@ export const newMuNote = (noteObj) => {
 }
 
 export const newBulletPoint = (pointObj, currentObj) => {
+    let token = localStorage.token
     if(token){
         return (dispatch) => {
             fetch('http://127.0.0.1:3000/bullet_points/new', {
@@ -78,6 +81,7 @@ export const newBulletPoint = (pointObj, currentObj) => {
 }
 
 export const getGames = () => {
+    let token = localStorage.token
     if(token){
         return (dispatch) => {
             fetch('http://127.0.0.1:3000/games', {
@@ -99,6 +103,7 @@ export const getGames = () => {
 }
 
 export const fetchNotes = (obj) => {
+    let token = localStorage.token
     if(token){
         return (dispatch) => {
             fetch(`http://127.0.0.1:3000/${obj.game}/${obj.character}/notes`, {
@@ -120,6 +125,7 @@ export const fetchNotes = (obj) => {
 }
 
 export const fetchMatchupNotes = (obj) => {
+    let token = localStorage.token
    if(token){
     if (obj.character === undefined || obj.opponent === undefined){
         alert("Please dont leave both fields blank!")
@@ -148,6 +154,7 @@ export const fetchMatchupNotes = (obj) => {
 }
 
 export const deletePoint = (dataObj) => {
+    let token = localStorage.token
     if(token){
         let choice = window.confirm("Are you sure you want to delete this point?")
         if (choice === true){
@@ -172,6 +179,7 @@ export const deletePoint = (dataObj) => {
 }
 
 export const deleteNote = (dataObj) => {
+    let token = localStorage.token
     if(token){
         let url;
         dataObj.type === 'char' ? url = `http://127.0.0.1:3000/character_notes/${dataObj.id}/delete`: url = `http://127.0.0.1:3000/matchup_notes/${dataObj.id}/delete`
@@ -198,6 +206,7 @@ export const deleteNote = (dataObj) => {
 }
 
 export const refreshCurrentNote = () => {
+    let token = localStorage.token
     if(token){
         return {
             type: "REFRESH_CURRENT_NOTE"

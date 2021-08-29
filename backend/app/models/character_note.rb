@@ -10,4 +10,5 @@ class CharacterNote < ApplicationRecord
     validates :character_id, presence: true
 
     scope :pull, -> (id) { where(game_id: id ) }
+    scope :user_notes, -> (id) {where(character_id: id)}
 end
