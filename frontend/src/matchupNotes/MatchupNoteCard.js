@@ -2,17 +2,21 @@ import MatchupNoteList from "./MatchupNoteList";
 import vs from "../images/vs.png"
 
 function MatchupNoteCard(props){
-    let note = props.note
     let game =  window.location.pathname.split("/")[3].split("%20").join(" ")
     let notesArr = []
-    let char = note.char;
-    let opp = note.opp;
-    //notesArr = note.notes.map((ele, index) => (<MatchupNoteList muNote={ele} key={index} char={props.character} opp={props.opponent}/> ))
-    console.log(note)
-
+    let data = props.data
+    let char;
+    let opp;
+    if(data.matchup){
+        char = data.matchup.char
+        opp = data.matchup.opp
+    } else {
+        char = data[0].matchup.character.name
+        opp = data[0].matchup.opponent.name
+        notesArr = data.map((ele, index) => <MatchupNoteList muNote={ele} key={index} char={char} opp={opp}/> )
+    }
   return (
-      <p>jo</p>
-       /*  <div className="noteCard">
+        <div className="noteCard">
             <h1 className="characters">{`${char} vs. ${opp}`}</h1>
             <div className="cardImg">
                 <img src={require(`../images/${game}/${char}.png`).default} alt=""/>
@@ -25,8 +29,8 @@ function MatchupNoteCard(props){
             <div className="cardImg">
                 <img src={require(`../images/${game}/${opp}.png`).default} alt=""/>
             </div>
-            {notesArr.length === 0 ? <h3>{`No notes found for ${char} vs ${opp}`}</h3>: <p>hi</p> }
-        </div> */
+            {notesArr.length === 0 ? <h3>{`No notes found for ${char} vs ${opp}`}</h3>: notesArr }
+        </div>
     ) 
   }
 

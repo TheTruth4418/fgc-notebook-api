@@ -59,7 +59,7 @@ class MatchupNoteSelect extends Component {
                 <select name="opponent" id="fighter2" value={this.state.opponent} onChange={this.onChange}/>
                 <input type="submit" /> 
             </form>
-            {this.props.current_note === undefined ?  console.log("empty") : <MatchupNoteCard note={this.props.current_note}/>}
+            {this.props.current_note === undefined ?  console.log("empty") : <MatchupNoteCard data={this.props.current_note}/>}
             <Link to="/view/matchup_notes" id="back">Go Back</Link>
             </>
         )

@@ -23,17 +23,18 @@ class MatchupNotesController < ApplicationController
         char = Character.find_by(name: params[:character])
         opp = Character.find_by(name: params[:opponent])
         mu = Matchup.find_by(character_id: char.id, opponent_id: opp.id)
-        obj = {}
-        notes = user.matchup_notes.user_notes(char.id).each do |x|
-            count = 0
-            obj["char"] = char.name
-            obj["opp"] = opp.name
-            obj["note"] = {}
-            obj["note"]["#{count+1}"] = x
-            obj["note"]["points"]= x.bullet_points
+        notes = user.matchup_notes.user_notes(char.id)
+        if notes.length > 0
+            render json: notes.to_json(:include => {
+                :matchup => {:include => {
+                    :character => {:only => [:name]},
+                    :opponent => {:only => [:name]}
+                }, :only => [:title, :id]},
+                :bullet_points => {:only => [:description, :id]},
+            }, :except => [:created_at, :updated_at])
+        else 
+            render json: {matchup: {char: char.name, opp: opp.name}}
         end
-        
-        render json: obj
     end
 
     def destroy

@@ -32,11 +32,12 @@ class MatchupNoteList extends Component {
         let title = this.props.muNote.title
         let points = this.props.muNote.bullet_points
         let id = this.props.muNote.id
-  /*       points.forEach(point => pointsArr.push(
+        pointsArr = this.props.muNote.bullet_points.map((point,index) =>
         <>
             <li className="points" key={point.id}>{point.description} <DeletePoint id={point.id} type="mu" currentObj={this.muObj}/></li>
         </>
-        )) */
+        )
+        console.log(this.props)
         return (
             <div className="Info">
                 <h3 className="title">{title} <DeleteNote id={id} key={id} type="mu" currentObj={this.muObj}/></h3>
