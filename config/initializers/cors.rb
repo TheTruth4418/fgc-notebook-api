@@ -7,18 +7,11 @@
 
  Rails.application.config.middleware.insert_before 0, Rack::Cors do
    allow do
-     origins 'https://fgc-notebook.netlify.app'
+     origins 'localhost:4418','https://fgc-notebook.netlify.app'
 
      resource '*',
        headers: :any,
        methods: [:get, :post, :put, :patch, :delete, :options, :head]
    end
-   
-   allow do
-    origins 'https://localhost:4418'
 
-    resource '*',
-      headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head]
-  end
  end
