@@ -47,7 +47,7 @@ class Game < ApplicationRecord
                         create_chars(characters, self.id)
         when "Guilty Gear Strive"
             characters=["Sol", "Ky", "May", "Axl", "Chipp", "Potemkin", "Faust", "Millia", "Zato-1",
-                        "Ramlethal", "Leo", "Nagoriyuki", "Giovanna", "Anji", "I-no"]
+                        "Ramlethal", "Leo", "Nagoriyuki", "Giovanna", "Anji", "I-no","Goldlewis"]
                         characters.sort
                         create_chars(characters, self.id)
         else
